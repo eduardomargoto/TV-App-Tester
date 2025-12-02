@@ -1,6 +1,6 @@
 package com.apptester.tv.presentation.ui.authentication
 
-import com.apptester.tv.domain.credentials.UserCredentials
+import com.apptester.tv.domain.UserCredentials
 
 sealed class AuthState {
     object Unauthenticated : AuthState()

@@ -1,7 +1,7 @@
-package com.apptester.tv.data.network
+package com.apptester.tv.domain.repository
 
 import android.app.Activity
-import com.apptester.tv.domain.credentials.UserCredentials
+import com.apptester.tv.domain.UserCredentials
 
 interface CredentialsRepository {
 

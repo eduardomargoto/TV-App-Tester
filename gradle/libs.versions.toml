@@ -47,6 +47,8 @@ koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compos
 ktor-client = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor-client" }
 ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor-client" }
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor-client" }
+ktor-client-gson = { group = "io.ktor", name = "ktor-client-gson", version.ref = "ktor-client" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor-client" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
@@ -60,7 +62,7 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 [bundles]
 credentials = ["androidx-credentials", "androidx-credentials-play-services-auth", "identify"]
 koin = ["koin", "koin-android", "koin-androidx-compose"]
-ktor-client = ["ktor-client", "ktor-client-android", "ktor-client-okhttp"]
+ktor = ["ktor-client", "ktor-client-android", "ktor-client-okhttp", "ktor-client-gson", "ktor-client-logging"]
 
 
 

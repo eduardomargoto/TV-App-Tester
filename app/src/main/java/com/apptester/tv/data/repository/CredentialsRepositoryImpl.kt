@@ -1,19 +1,18 @@
-package com.apptester.tv.data.network
+package com.apptester.tv.data.repository
 
 import android.app.Activity
-import android.util.Log
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.credentials.exceptions.NoCredentialException
 import com.apptester.tv.BuildConfig
-import com.apptester.tv.domain.credentials.UserCredentials
+import com.apptester.tv.domain.UserCredentials
+import com.apptester.tv.domain.repository.CredentialsRepository
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 class CredentialsRepositoryImpl(
     val credentialsManager: CredentialManager

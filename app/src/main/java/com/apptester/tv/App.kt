@@ -2,11 +2,17 @@ package com.apptester.tv
 
 import android.app.Application
 import androidx.credentials.CredentialManager
-import com.apptester.tv.data.network.CredentialsRepository
-import com.apptester.tv.data.network.CredentialsRepositoryImpl
+import com.apptester.tv.data.repository.CredentialsRepositoryImpl
+import com.apptester.tv.data.networkModule
+import com.apptester.tv.data.repository.AppDistributionRepositoryImpl
+import com.apptester.tv.domain.appdistribution.AppDistributionGetAppsUseCase
+import com.apptester.tv.domain.appdistribution.AppDistributionGetProjectsUseCase
+import com.apptester.tv.domain.appdistribution.AppDistributionGetReleasesUseCase
 import com.apptester.tv.domain.credentials.GoogleSignInUseCase
 import com.apptester.tv.domain.credentials.GoogleSignOutUseCase
 import com.apptester.tv.domain.credentials.RequestGoogleSignInUseCase
+import com.apptester.tv.domain.repository.AppDistributionRepository
+import com.apptester.tv.domain.repository.CredentialsRepository
 import com.apptester.tv.presentation.ui.authentication.AuthViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -34,10 +40,20 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 appModule,
+                networkModule,
                 authModule,
                 credentialsModule,
+                appDistributionModule,
             )
         }
+    }
+
+    val appDistributionModule = module {
+        factoryOf(::AppDistributionRepositoryImpl)
+            .bind<AppDistributionRepository>()
+        factoryOf(::AppDistributionGetProjectsUseCase)
+        factoryOf(::AppDistributionGetAppsUseCase)
+        factoryOf(::AppDistributionGetReleasesUseCase)
     }
 
     val credentialsModule = module {

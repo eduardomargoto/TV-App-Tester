@@ -1,4 +1,4 @@
-package com.apptester.tv.domain.credentials
+package com.apptester.tv.domain
 
 data class UserCredentials(
     val email: String,

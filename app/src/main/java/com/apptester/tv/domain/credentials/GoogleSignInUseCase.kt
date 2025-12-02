@@ -1,7 +1,8 @@
 package com.apptester.tv.domain.credentials
 
 import android.app.Activity
-import com.apptester.tv.data.network.CredentialsRepository
+import com.apptester.tv.domain.UserCredentials
+import com.apptester.tv.domain.repository.CredentialsRepository
 
 class GoogleSignInUseCase(
     val credentialsRepository: CredentialsRepository

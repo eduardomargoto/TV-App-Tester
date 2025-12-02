@@ -1,6 +1,6 @@
 package com.apptester.tv.domain.credentials
 
-import com.apptester.tv.data.network.CredentialsRepository
+import com.apptester.tv.domain.repository.CredentialsRepository
 
 class GoogleSignOutUseCase(
     val credentialsRepository: CredentialsRepository

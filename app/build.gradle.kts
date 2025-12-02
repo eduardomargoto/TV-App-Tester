@@ -78,6 +78,7 @@ dependencies {
     implementation(libs.bundles.credentials)
 
     implementation(libs.bundles.koin)
+    implementation(libs.bundles.ktor)
 
     implementation(libs.timber)
 
