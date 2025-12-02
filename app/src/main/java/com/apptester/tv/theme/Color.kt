@@ -1,4 +1,4 @@
-package com.apptester.tvapptester.ui.theme
+package com.apptester.tv.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -2,13 +2,12 @@ package com.apptester.tv
 
 import android.app.Application
 import com.apptester.tv.domain.credentials.credentialsModule
-import com.apptester.tv.presentation.features.authentication.loginModule
+import com.apptester.tv.presentation.ui.authentication.loginModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
 
 import org.koin.dsl.module
 import timber.log.Timber
@@ -24,7 +23,11 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(appModule, loginModule, credentialsModule)
+            modules(
+                appModule,
+                loginModule,
+                credentialsModule
+            )
         }
     }
 

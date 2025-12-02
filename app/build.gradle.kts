@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.material3)
+    implementation(libs.navigation)
 
     implementation(libs.coroutines)
     implementation(libs.coroutines.android)

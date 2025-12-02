@@ -1,4 +1,4 @@
-package com.apptester.tv.presentation.features.authentication
+package com.apptester.tv.presentation.ui.authentication
 
 import android.os.Bundle
 import android.util.Log
@@ -13,9 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.apptester.tvapptester.ui.theme.TVAppTesterTheme
+import com.apptester.tv.theme.AppTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 
 class AuthActivity : ComponentActivity() {
@@ -25,9 +24,9 @@ class AuthActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setupUI()
+//        setupUI()
         setContent {
-            TVAppTesterTheme {
+            AppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
@@ -39,26 +38,33 @@ class AuthActivity : ComponentActivity() {
         viewModel.checkExistingCredentials(this)
     }
 
-    private fun setupUI() {
-        viewModel.authState.observe(this) { state ->
-            when (state) {
-                is AuthState.Authenticated -> {
-                    // Usuário autenticado
-                    Log.d("AuthActivity", "Usuário autenticado")
-                }
+//    private fun setupUI() {
+//        viewModel.authState.observe(this) { state ->
+//            when (state) {
+//                is AuthState.Authenticated -> {
+//                    // Usuário autenticado
+//                    Log.d("AuthActivity", "Usuário autenticado")
+//                }
+//
+//                is AuthState.Unauthenticated -> {
+//                    Log.d("AuthActivity", "Usuário não autenticado")
+//                    // Mostrar tela de login
+//                }
+//
+//                is AuthState.Error -> {
+//                    Log.e("AuthActivity", "Erro: ${state.message}")
+//                    // Mostrar erro
+//                }
+//
+//                AuthState.Loading -> TODO()
+//            }
+//        }
+//    }
+}
 
-                is AuthState.Unauthenticated -> {
-                    Log.d("AuthActivity", "Usuário não autenticado")
-                    // Mostrar tela de login
-                }
+@Composable
+fun AppBox(modifier: Modifier = Modifier) {
 
-                is AuthState.Error -> {
-                    Log.e("AuthActivity", "Erro: ${state.message}")
-                    // Mostrar erro
-                }
-            }
-        }
-    }
 }
 
 @Composable
@@ -75,7 +81,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 )
 @Composable
 fun GreetingPreview() {
-    TVAppTesterTheme {
+    AppTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
             Greeting(
                 name = "Android",

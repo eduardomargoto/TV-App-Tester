@@ -6,6 +6,7 @@ import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
+import androidx.credentials.exceptions.NoCredentialException
 import com.apptester.tv.BuildConfig
 import com.apptester.tv.domain.credentials.UserCredentials
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
@@ -47,6 +48,8 @@ class CredentialsRepositoryImpl(
             )
 
             Result.success(userCredentials)
+        } catch (_: NoCredentialException) {
+            Result.success(null)
         } catch (e: Exception) {
             Result.failure(e)
         }

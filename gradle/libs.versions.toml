@@ -14,6 +14,7 @@ coroutines = "1.10.2"
 koin = "4.1.1"
 ktor-client = "2.1.1"
 timber = "5.0.1"
+navigation = "2.9.6"
 
 
 [libraries]
@@ -48,6 +49,8 @@ ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor-client" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
+navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

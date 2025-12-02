@@ -1,4 +1,4 @@
-package com.apptester.tvapptester.ui.theme
+package com.apptester.tv.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
@@ -9,7 +9,7 @@ import androidx.tv.material3.lightColorScheme
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
-fun TVAppTesterTheme(
+fun AppTheme(
     isInDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
