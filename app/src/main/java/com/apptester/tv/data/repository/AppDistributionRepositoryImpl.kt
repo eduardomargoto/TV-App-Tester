@@ -3,18 +3,20 @@ package com.apptester.tv.data.repository
 import com.apptester.tv.data.entity.FirebaseAppsResponse
 import com.apptester.tv.data.entity.FirebaseProjectResponse
 import com.apptester.tv.data.entity.FirebaseReleasesResponse
-import com.apptester.tv.data.network.api.ApiFirebaseDistribution
+import com.apptester.tv.data.network.api.ApiAppDistribution
+import com.apptester.tv.data.network.api.ApiFirebase
 import com.apptester.tv.domain.repository.AppDistributionRepository
 
 class AppDistributionRepositoryImpl(
-    private val api: ApiFirebaseDistribution
+    private val api: ApiAppDistribution,
+    private val apiFirebase: ApiFirebase
 ) : AppDistributionRepository {
+
     override suspend fun getProjects(
         pageSize: Int?,
         pageToken: String?,
         showDeleted: Boolean
-    ): FirebaseProjectResponse = api.getProjects(pageSize, pageToken, showDeleted)
-
+    ): FirebaseProjectResponse = apiFirebase.getProjects(pageSize, pageToken, showDeleted)
 
     override suspend fun getApps(
         projectId: String,
