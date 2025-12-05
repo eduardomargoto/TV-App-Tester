@@ -1,5 +1,6 @@
 package com.apptester.tv.domain.appdistribution
 
+import com.apptester.tv.data.entity.FirebaseReleaseResponse
 import com.apptester.tv.domain.repository.AppDistributionRepository
 
 class AppDistributionGetReleasesUseCase(
@@ -9,5 +10,6 @@ class AppDistributionGetReleasesUseCase(
         projectNumber: String,
         appId: String,
         pageSize: Int? = null
-    ) = appDistributionRepository.getReleases(projectNumber, appId, pageSize)
+    ): Result<List<FirebaseReleaseResponse>> =
+        appDistributionRepository.getReleases(projectNumber, appId, pageSize)
 }

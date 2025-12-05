@@ -41,7 +41,7 @@ class App : Application() {
             modules(
                 appModule,
                 networkModule,
-                authModule,
+                viewModelsModule,
                 credentialsModule,
                 appDistributionModule,
             )
@@ -69,8 +69,9 @@ class App : Application() {
         factoryOf(::RequestGoogleSignInUseCase)
     }
 
-    val authModule = module {
+    val viewModelsModule = module {
         viewModelOf(::AuthViewModel)
+        viewModelOf(::AppSelectionViewModel)
     }
 
     val appModule = module {

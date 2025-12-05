@@ -2,7 +2,6 @@
 
 package com.apptester.tv.presentation.ui.appselection
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -54,11 +53,13 @@ import com.apptester.tv.R
 import com.apptester.tv.presentation.PositionFocusedItemInLazyLayout
 import com.apptester.tv.presentation.ifElse
 import com.apptester.tv.theme.AppTheme
+import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalTvMaterial3Api::class)
 @Composable
 fun AppSelectionScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: AppSelectionViewModel = koinViewModel<AppSelectionViewModel>(),
 ) {
     var selectedCard by remember { mutableStateOf(immersiveListItems.first()) }
 

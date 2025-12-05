@@ -1,8 +1,8 @@
 package com.apptester.tv.domain.repository
 
-import com.apptester.tv.data.entity.FirebaseAppsResponse
-import com.apptester.tv.data.entity.FirebaseProjectResponse
-import com.apptester.tv.data.entity.FirebaseReleasesResponse
+import com.apptester.tv.data.entity.FirebaseApp
+import com.apptester.tv.data.entity.FirebaseProject
+import com.apptester.tv.data.entity.FirebaseReleaseResponse
 
 interface AppDistributionRepository {
 
@@ -10,18 +10,18 @@ interface AppDistributionRepository {
         pageSize: Int? = null,
         pageToken: String? = null,
         showDeleted: Boolean = false
-    ): FirebaseProjectResponse
+    ): Result<List<FirebaseProject>>
 
     suspend fun getApps(
         projectId: String,
         pageSize: Int? = null,
         pageToken: String? = null,
         showDeleted: Boolean = false
-    ): FirebaseAppsResponse
+    ): Result<List<FirebaseApp>>
 
     suspend fun getReleases(
         projectNumber: String,
         appId: String,
         pageSize: Int? = null
-    ): FirebaseReleasesResponse
+    ): Result< List<FirebaseReleaseResponse>>
 }
