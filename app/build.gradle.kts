@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -34,6 +35,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
 
             buildConfigField("String", "SERVER_CLIENT_ID", "\"${localProperties["oauth.webclientid"]}\"")
+            buildConfigField("String", "CLIENT_SECRET", "\"${localProperties["oauth.clientsecret"]}\"")
         }
         release {
             isMinifyEnabled = false
@@ -57,7 +59,7 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.jetbrains.kotlinx.serialization)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(platform(libs.androidx.compose.bom))
@@ -76,11 +78,13 @@ dependencies {
 
     implementation(libs.identify)
     implementation(libs.bundles.credentials)
+    implementation(libs.play.services.auth)
 
     implementation(libs.bundles.koin)
     implementation(libs.bundles.ktor)
 
     implementation(libs.timber)
+    implementation(libs.bundles.datastore)
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)

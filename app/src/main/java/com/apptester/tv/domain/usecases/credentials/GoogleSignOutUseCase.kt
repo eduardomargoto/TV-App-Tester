@@ -1,4 +1,4 @@
-package com.apptester.tv.domain.credentials
+package com.apptester.tv.domain.usecases.credentials
 
 import com.apptester.tv.domain.repository.CredentialsRepository
 

@@ -1,19 +1,19 @@
 package com.apptester.tv.presentation.ui.authentication
 
 import android.app.Activity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apptester.tv.domain.credentials.GoogleSignInUseCase
-import com.apptester.tv.domain.credentials.RequestGoogleSignInUseCase
+import com.apptester.tv.domain.usecases.authentication.LoadTokensUseCase
+import com.apptester.tv.domain.usecases.credentials.GoogleSignInUseCase
+import com.apptester.tv.domain.usecases.credentials.RequestGoogleSignInUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class AuthViewModel(
     val googleSignInUseCase: GoogleSignInUseCase,
-    val requestGoogleSignInUseCase: RequestGoogleSignInUseCase
+    val requestGoogleSignInUseCase: RequestGoogleSignInUseCase,
+    val loadTokensUseCase: LoadTokensUseCase
 ) : ViewModel() {
 
     private val _authState = MutableStateFlow<AuthState>(AuthState.Loading)
@@ -26,6 +26,7 @@ class AuthViewModel(
             googleSignInUseCase.invoke(activity)
                 .onSuccess { credentials ->
                     if (credentials != null) {
+                        loadTokensUseCase.invoke()
                         _authState.value = AuthState.Authenticated(credentials)
                     } else {
                         requestGoogleSignIn(activity)

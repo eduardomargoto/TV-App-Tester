@@ -17,7 +17,7 @@ class ApiFirebase(
         showDeleted: Boolean = false
     ): FirebaseProjectResponse = client.get {
         url {
-            path("v1/projects")
+            path("v1beta1/projects")
             parameter("pageSize", pageSize)
             parameter("pageToken", pageToken)
             parameter("showDeleted", showDeleted)

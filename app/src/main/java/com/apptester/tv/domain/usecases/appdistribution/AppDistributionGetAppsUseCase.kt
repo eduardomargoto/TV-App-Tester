@@ -1,4 +1,4 @@
-package com.apptester.tv.domain.appdistribution
+package com.apptester.tv.domain.usecases.appdistribution
 
 import com.apptester.tv.data.entity.FirebaseApp
 import com.apptester.tv.domain.repository.AppDistributionRepository
@@ -11,6 +11,7 @@ class AppDistributionGetAppsUseCase(
         pageSize: Int? = null,
         pageToken: String? = null,
         showDeleted: Boolean = false
-    ): Result<List<FirebaseApp>> =
+    ): List<FirebaseApp> =
         appDistributionRepository.getApps(projectId, pageSize, pageToken, showDeleted)
+            .getOrThrow()
 }

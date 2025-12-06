@@ -1,4 +1,4 @@
-package com.apptester.tv.domain.appdistribution
+package com.apptester.tv.domain.usecases.appdistribution
 
 import com.apptester.tv.data.entity.FirebaseReleaseResponse
 import com.apptester.tv.domain.repository.AppDistributionRepository

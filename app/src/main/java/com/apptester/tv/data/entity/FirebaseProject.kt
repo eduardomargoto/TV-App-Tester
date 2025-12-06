@@ -1,11 +1,11 @@
 package com.apptester.tv.data.entity
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 
 data class FirebaseProject(
-    @SerializedName("projectId") val projectId: String,
-    @SerializedName("projectNumber") val projectNumber: String,
-    @SerializedName("displayName") val displayName: String,
-    @SerializedName("name") val name: String,
-    @SerializedName("etag") val etag: String,
+    @SerialName("projectId") val projectId: String,
+    @SerialName("projectNumber") val projectNumber: String,
+    @SerialName("displayName") val displayName: String,
+    @SerialName("name") val name: String,
+    @SerialName("etag") val etag: String,
 )

@@ -1,7 +1,7 @@
 package com.apptester.tv.data.entity
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 
 data class FirebaseReleasesResponse (
-    @SerializedName("releases") val releases: List<FirebaseReleaseResponse>
+    @SerialName("releases") val releases: List<FirebaseReleaseResponse>
 )

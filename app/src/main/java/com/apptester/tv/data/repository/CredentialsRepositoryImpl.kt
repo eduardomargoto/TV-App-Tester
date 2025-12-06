@@ -7,6 +7,9 @@ import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.credentials.exceptions.NoCredentialException
 import com.apptester.tv.BuildConfig
+import com.apptester.tv.data.entity.UserAuthData
+import com.apptester.tv.data.entity.UserProfile
+import com.apptester.tv.data.local.AuthDataStore
 import com.apptester.tv.domain.UserCredentials
 import com.apptester.tv.domain.repository.CredentialsRepository
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
@@ -15,7 +18,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class CredentialsRepositoryImpl(
-    val credentialsManager: CredentialManager
+    val credentialsManager: CredentialManager,
+    val authDataStore: AuthDataStore,
 ) : CredentialsRepository {
 
     override suspend fun getCredentials(activityContext: Activity): Result<UserCredentials?> {
@@ -45,6 +49,19 @@ class CredentialsRepositoryImpl(
                 photoUrl = googleIdTokenCredential.profilePictureUri?.toString(),
                 idToken = googleIdTokenCredential.idToken
             )
+            authDataStore.getUserDataOnce()?.let {
+                val userData = it.copy(
+                    idToken = userCredentials.idToken,
+                    profile = UserProfile(
+                        email = userCredentials.email,
+                        displayName = userCredentials.displayName,
+                        photoUrl = userCredentials.photoUrl
+                    )
+                )
+                authDataStore.saveUserData(userData)
+            } ?: run {
+                authDataStore.saveUserData(userCredentials.toUserAuthData())
+            }
 
             Result.success(userCredentials)
         } catch (_: NoCredentialException) {
@@ -94,10 +111,28 @@ class CredentialsRepositoryImpl(
                     idToken = googleIdTokenCredential.idToken
                 )
 
+                authDataStore.saveUserData(userCredentials.toUserAuthData())
                 Result.success(userCredentials)
             } catch (e: GetCredentialException) {
                 e.printStackTrace()
                 Result.failure(e)
             }
         }
+}
+
+fun UserCredentials.toUserAuthData(): UserAuthData {
+    return UserAuthData(
+        accessToken = "",
+        refreshToken = "",
+        expiresIn = 0,
+        idToken = idToken,
+        tokenType = "Bearer",
+        scope = "",
+        code = "",
+        profile = UserProfile(
+            email = email,
+            displayName = displayName,
+            photoUrl = photoUrl,
+        ),
+    )
 }
